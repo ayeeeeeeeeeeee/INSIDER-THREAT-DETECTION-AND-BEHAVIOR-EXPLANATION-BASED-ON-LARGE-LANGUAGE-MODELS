@@ -32,6 +32,31 @@
     ├── common.py
     └── model_loader.py
 ```
+## 运行指南
+
+### 1. 构建行为序列
+
+```bash
+# 完整版（含 content，用于语义检测）
+python data_preprocessing/behavior_sequence_builder.py --build-full --include-content
+
+# 轻量版（不含 content，用于画像和统计）
+python data_preprocessing/behavior_sequence_builder.py --build-full
+```
+
+### 2. 训练语义检测模型
+```bash
+python training/semantic_trainer.py --mode train
+```
+
+###  3.运行检测和推理
+```bash
+# Mock 模式测试（不加载真实模型，快速验证流程）
+python test_all.py --session MCF0600_2010-09-20 --mock
+
+# 真实模型测试（使用你自己训练好的模型）
+python test_all.py --session MCF0600_2010-09-20 --model-path <你的模型路径>
+```
 
 ## 项目声明
 
